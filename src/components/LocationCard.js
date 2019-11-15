@@ -1,52 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import LocationCard from "./LocationCard";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-export default function LocationsList() {
-  const [locations, setLocations] = useState([]);
+const StyledLocation = styled.div`
+  border: 0.5em solid purple;
+  margin: 1em;
+  width: 40%;
+  padding: 1em;
+`;
 
-  useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-
-    const getCharacters = () => {
-      axios
-        .get("https://rickandmortyapi.com/api/location/")
-
-        .then(response => {
-          const locationObject = response.data;
-          const locationArray = locationObject.results;
-          setLocations(locationArray);
-        })
-
-        .catch(error => {
-          console.log(error.message);
-        });
-    };
-
-    getCharacters();
-  }, []);
-
-  const StyledCon = styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: center;
-  `;
-
+export default function LocationCard({ name, type, dimension }) {
   return (
-    <StyledCon>
-      {/* <h2>TODO: `array.map()` over your state here!</h2> */}
-
-      {locations.map(location => (
-        <LocationCard
-          key={location.id}
-          name={location.name}
-          type={location.type}
-          dimension={location.dimension}
-        />
-      ))}
-    </StyledCon>
+    <StyledLocation>
+      <h4>{name}</h4>
+      <div>
+        <p>{type}</p>
+        <p>{dimension}</p>
+      </div>
+    </StyledLocation>
   );
 }

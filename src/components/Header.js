@@ -7,8 +7,8 @@ const StyledNav = styled.div`
   justify-content: space-around;
   width: 100%;
   justify-self: center;
-  font-size: 16px;
-  color: dodger-blue;
+  font-size: 26px;
+  color: #1e90ff;
   font-weight: bold;
 `;
 
